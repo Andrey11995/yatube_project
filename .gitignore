@@ -6,13 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-.idea/
-.vscode/
-.idea
-.vscode
-idea/
-vscode/
-
 # Distribution / packaging
 .Python
 build/
@@ -134,5 +127,26 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Папки, создаваемые средой разработки
 .idea
-.vscode
+.DS_Store
+.AppleDouble
+.LSOverride
+
+*.sublime-project
+*.sublime-workspace
+
+.vscode/
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+.mypy_cache
+
+# папки со статикой и медиа
+static/
+yatube/posts/static/
+yatube/media/
+
