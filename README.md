@@ -11,7 +11,7 @@
 
 PC             |  Mobile
 :-------------------------:|:-------------------:
-![Image](https://github.com/Andrey11995/yatube_project/raw/main/yatube/static/img/yatube.jpg) | ![Image](https://github.com/Andrey11995/yatube_project/raw/main/yatube/static/img/yatube_mob.jpg)
+![Image](https://github.com/Andrey11995/yatube_project/raw/main/yatube/static/img/yatube_pc.jpg) | ![Image](https://github.com/Andrey11995/yatube_project/raw/main/yatube/static/img/yatube_mob.jpg)
 
 ## Как запустить проект:
 
