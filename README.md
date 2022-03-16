@@ -9,7 +9,7 @@
 Сайт также оптимизирован для мобильных устройств
 #### Рабочий проект доступен по ссылке: https://andrey11995.pythonanywhere.com/
 
-![Image](https://github.com/Andrey11995/yatube_project/raw/main/yatube/static/img/yatube.jpg)
+![Image](https://github.com/Andrey11995/yatube_project/raw/main/yatube/static/img/yatube.jpg) | ![Image](https://github.com/Andrey11995/yatube_project/raw/main/yatube/static/img/yatube_mob.jpg)
 
 ## Как запустить проект:
 
