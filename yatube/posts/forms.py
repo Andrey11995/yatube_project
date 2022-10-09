@@ -3,6 +3,7 @@ from .models import Post, Comment, Group
 
 
 class PostForm(forms.ModelForm):
+    """Форма создания и редактирования публикации с валидацией."""
     class Meta:
         model = Post
         fields = ('text', 'group', 'image')
@@ -19,6 +20,7 @@ class PostForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    """Форма создания комменетария с валидацией."""
     class Meta:
         model = Comment
         fields = ('text',)
@@ -35,6 +37,7 @@ class CommentForm(forms.ModelForm):
 
 
 class GroupForm(forms.ModelForm):
+    """Форма создания группы с валидацией."""
     class Meta:
         model = Group
         fields = ('title', 'slug', 'description')

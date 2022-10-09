@@ -8,8 +8,9 @@ from .forms import PostForm, CommentForm, GroupForm
 from .models import Group, Post, User, Comment, Follow, Like, LikeComment
 
 
-# @cache_page(10)
+@cache_page(5)
 def index(request):
+    """Главная страница."""
     template = 'posts/index.html'
     title = 'Последние обновления на сайте'
     post_list = Post.objects.select_related('author', 'group').all()
@@ -32,6 +33,7 @@ def index(request):
 
 
 def group_posts(request, slug):
+    """Страница со списком групп."""
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
     post_list = group.posts.all()
@@ -46,6 +48,7 @@ def group_posts(request, slug):
 
 
 def profile(request, username):
+    """Страница профиля пользователя."""
     template = 'posts/profile.html'
     author = get_object_or_404(User, username=username)
     post_list = author.posts.select_related('group').all()
@@ -70,6 +73,7 @@ def profile(request, username):
 
 
 def post_view(request, post_id):
+    """Страница публикации с формой создания комментария."""
     template = 'posts/post_detail.html'
     post = Post.objects.select_related('author', 'group').get(pk=post_id)
     posts_count = post.author.posts.all().count()
@@ -98,6 +102,7 @@ def post_view(request, post_id):
 
 @login_required()
 def post_create(request):
+    """Страница с формой создания публикации."""
     template = 'posts/create_post.html'
     form = PostForm(
         request.POST or None,
@@ -117,6 +122,7 @@ def post_create(request):
 
 @login_required()
 def post_edit(request, post_id):
+    """Страница с формой редактирования публикации."""
     template = 'posts/create_post.html'
     post = get_object_or_404(Post, pk=post_id)
     if request.user == post.author:
@@ -139,6 +145,7 @@ def post_edit(request, post_id):
 
 @login_required()
 def post_delete(request, post_id):
+    """Метод удаления публикации."""
     post = get_object_or_404(Post, pk=post_id)
     if post.author == request.user:
         post.delete()
@@ -148,6 +155,7 @@ def post_delete(request, post_id):
 
 @login_required
 def add_comment(request, post_id):
+    """Метод добавления комментария."""
     post = Post.objects.get(pk=post_id)
     form = CommentForm(request.POST or None)
     if form.is_valid():
@@ -162,6 +170,7 @@ def add_comment(request, post_id):
 
 @login_required
 def delete_comment(request, post_id, com_id):
+    """Метод удаления комментария."""
     post = get_object_or_404(Post, id=post_id)
     comment = get_object_or_404(Comment, id=com_id)
     if comment.author == request.user or post.author == request.user:
@@ -173,6 +182,7 @@ def delete_comment(request, post_id, com_id):
 
 @login_required
 def like_comment(request, post_id, com_id):
+    """Метод лайка комментария."""
     comment = Comment.objects.select_related('author', 'post').get(id=com_id)
     like = LikeComment.objects.filter(
         user=request.user,
@@ -197,6 +207,7 @@ def like_comment(request, post_id, com_id):
 
 @login_required
 def follow_index(request):
+    """Страница с подписками авторизованного пользователя."""
     template = 'posts/follow.html'
     post_list = Post.objects.select_related('author', 'group').filter(
         author__following__user=request.user
@@ -216,10 +227,12 @@ def follow_index(request):
 
 @login_required
 def profile_follow(request, username):
+    """Метод подписки на пользователя."""
     author = get_object_or_404(User, username=username)
     follow = Follow.objects.filter(
         user=request.user,
-        author=author).exists()
+        author=author
+    ).exists()
     if request.user != author and not follow:
         Follow.objects.create(
             user=request.user,
@@ -230,6 +243,7 @@ def profile_follow(request, username):
 
 @login_required
 def profile_unfollow(request, username):
+    """Метод отписки от пользователя."""
     Follow.objects.filter(
         author__username=username,
         user__username=request.user
@@ -239,6 +253,7 @@ def profile_unfollow(request, username):
 
 @login_required
 def like_index(request):
+    """Страница с понравившимися публикациями."""
     template = 'posts/likes.html'
     follow_count = Follow.objects.select_related('author').filter(
         user=request.user
@@ -258,6 +273,7 @@ def like_index(request):
 
 @login_required
 def post_like(request, post_id):
+    """Метод лайка публикации."""
     post = Post.objects.select_related('author', 'group').get(pk=post_id)
     like = Like.objects.filter(
         user=request.user,
@@ -282,6 +298,7 @@ def post_like(request, post_id):
 
 @login_required
 def group_create(request):
+    """Страница с формой создания группы."""
     template = 'posts/create_group.html'
     form = GroupForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
