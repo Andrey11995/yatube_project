@@ -11,6 +11,19 @@ PC             |  Mobile
 :-------------------------:|:-------------------:
 ![Image](https://github.com/Andrey11995/yatube_project/raw/main/yatube/static/img/yatube_pc.jpg) | ![Image](https://github.com/Andrey11995/yatube_project/raw/main/yatube/static/img/yatube_mob.jpg)
 
+## Наполнение env-файла:
+
+- SECRET_KEY - секретный ключ Django;
+- DEBUG - 1 - вкл, 0 - выкл;
+- ALLOWED_HOSTS - список доступных хостов через запятую без пробела (localhost,127.0.0.1);
+- POSTGRES_USER - логин для подключения к БД;
+- POSTGRES_PASSWORD - пароль для подключения к БД;
+- POSTGRES_DB - название базы данных;
+- DB_HOST - название сервиса (контейнера);
+- DB_PORT - порт для подключения к БД;
+- REDIS_HOST - название контейнера redis;
+- REDIS_PORT - порт контейнера redis
+
 ## Запуск проекта в докере:
 
 Клонировать репозиторий и перейти в него в командной строке:
@@ -21,6 +34,12 @@ git clone https://github.com/Andrey11995/yatube_project.git
 
 ```
 cd yatube_project
+```
+
+Создать файл .env в корне проекта и наполнить его данными:
+
+```
+touch .env && nano .env
 ```
 
 Запустить Docker-compose:

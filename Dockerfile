@@ -2,7 +2,7 @@ FROM python:3.9
 
 WORKDIR /project
 
-RUN apt-get update && apt-get install -y gettext
+RUN apt-get update && apt-get install -y gettext nano
 
 RUN pip install --upgrade pip
 
