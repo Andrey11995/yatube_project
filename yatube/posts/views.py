@@ -1,11 +1,11 @@
-from django.views.decorators.cache import cache_page
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
-from django.conf import settings
+from django.views.decorators.cache import cache_page
 
-from .forms import PostForm, CommentForm, GroupForm
-from .models import Group, Post, User, Comment, Follow, Like, LikeComment
+from .forms import CommentForm, GroupForm, PostForm
+from .models import Comment, Follow, Group, Like, LikeComment, Post, User
 
 
 @cache_page(5)
